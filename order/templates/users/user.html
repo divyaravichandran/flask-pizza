@@ -1,0 +1,29 @@
+{% extends "users/base.html" %}
+
+{% block body %}
+<h1>Hello, {{ user.first_name }}</h1>
+<ul>
+    <li>Currently logged in as: {{ user.username }}</li>
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+    <h1>Regular Pizza</h1>
+
+    {% for rpizza in regular_pizza %}
+        <li>
+                 {{ rpizza.name }}: {{ rpizza.small  }} {{ rpizza.large  }}
+            <a href="{% url 'cart' rpizza.name rpizza.small "Regular_Pizza"%}">
+            Add
+            </a>
+
+        </li>
+    {% endfor %}
+</ul>
+    <h1>Shopping cart</h1>
+
+    {% for cart in shopping_cart %}
+        <li>
+                 {{ cart.item }}: {{ cart.category  }} {{ cart.price  }} {{ cart.status  }}
+
+        </li>
+    {% endfor %}
+
+{% endblock %}
